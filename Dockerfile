@@ -11,4 +11,6 @@ RUN  apt-get -y update && \
      rm -rf /var/lib/apt/lists/*
 EXPOSE 80/tcp 443/tcp
 EXPOSE 1194/udp
+COPY container-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/container-entrypoint.sh"]
 CMD ["pritunl", "start"]

@@ -52,24 +52,20 @@ docker-run-shell:: ## runs the docker image locally but with shell
 helm-install:: ## installs using helm from chart in repo
 		@helm install \
 			-f helm-values.yaml \
-			--namespace $(KUBE_NAMESPACE) \
 				pritunl charts/pritunl
 
 helm-upgrade:: ## upgrades deployed helm release
 		@helm upgrade \
 			-f helm-values.yaml \
-			--namespace $(KUBE_NAMESPACE) \
 				pritunl charts/pritunl
 
 helm-uninstall:: ## deletes and purges deployed helm release
 		@helm uninstall \
-			--namespace $(KUBE_NAMESPACE) \
 				pritunl
 
 helm-render:: ## prints out the rendered chart
 		@helm install \
 			-f helm-values.yaml \
-			--namespace $(KUBE_NAMESPACE) \
 			--dry-run \
 			--debug \
 				pritunl charts/pritunl
@@ -77,7 +73,6 @@ helm-render:: ## prints out the rendered chart
 helm-validate:: ## runs a lint on the helm chart
 		@helm lint \
 			-f helm-values.yaml \
-			--namespace $(KUBE_NAMESPACE) \
 				charts/pritunl
 
 helm-package:: ## packages the helm chart into an archive

@@ -33,10 +33,19 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: PRITUNL_MONGODB_URI
+            value: {{ .Values.pritunl.mongodbUri }}
           ports:
             - name: http
               containerPort: 80
               protocol: TCP
+            - name: https
+              containerPort: 443
+              protocol: TCP
+            - name: vpn
+              containerPort: 1194
+              protocol: UDP
           livenessProbe:
             httpGet:
               path: /
