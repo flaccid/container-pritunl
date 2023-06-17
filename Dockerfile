@@ -9,8 +9,7 @@ RUN  apt-get -y update && \
      update-alternatives --set iptables /usr/sbin/iptables-legacy && \
      apt-get -y autoremove && \
      rm -rf /var/lib/apt/lists/*
-EXPOSE 80/tcp 443/tcp
-EXPOSE 1194/udp
+EXPOSE 80/tcp 443/tcp 1194/udp
 COPY container-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["/usr/local/bin/container-entrypoint.sh"]
 CMD ["pritunl", "start"]
