@@ -3,6 +3,7 @@ IMAGE_NAME = pritunl
 IMAGE_VERSION = latest
 IMAGE_ORG = flaccid
 IMAGE_TAG = $(DOCKER_REGISTRY)/$(IMAGE_ORG)/$(IMAGE_NAME):$(IMAGE_VERSION)
+KUBE_NAMESPACE = "pritunl"
 export DOCKER_BUILDKIT = 1
 export DOCKER_BUILD_PROGRESS_TYPE = plain
 
@@ -52,15 +53,18 @@ docker-run-shell:: ## runs the docker image locally but with shell
 helm-install:: ## installs using helm from chart in repo
 		@helm install \
 			-f helm-values.yaml \
+			-n $(KUBE_NAMESPACE) \
 				pritunl charts/pritunl
 
 helm-upgrade:: ## upgrades deployed helm release
 		@helm upgrade \
 			-f helm-values.yaml \
+			-n $(KUBE_NAMESPACE) \
 				pritunl charts/pritunl
 
 helm-uninstall:: ## deletes and purges deployed helm release
 		@helm uninstall \
+			-n $(KUBE_NAMESPACE) \
 				pritunl
 
 helm-render:: ## prints out the rendered chart

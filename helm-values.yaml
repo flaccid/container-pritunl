@@ -1,6 +1,0 @@
-# example values file
-pritunl:
-  env:
-    PRITUNL_MONGODB_URI: "mongodb+srv://pritunl:sup3rS3cre7@pritunl-0.abc012a.mongodb.net/pritunl"
-  logs:
-    emptyDir: true
