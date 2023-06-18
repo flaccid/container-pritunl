@@ -1,4 +1,4 @@
----
+{{- if .Values.configMap.create -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -8,3 +8,4 @@ metadata:
 data:
   pritunl.conf: |
     {{- .Values.pritunl.conf | toPrettyJson | nindent 4 }}
+{{- end }}
