@@ -85,6 +85,10 @@ helm-package:: ## packages the helm chart into an archive
 helm-index:: ## creates/updates the helm repo index file
 		@helm repo index --url https://flaccid.github.io/container-pritunl/ .
 
+helm-flush:: ## removes local helm packages and index file
+		@rm -f ./pritunl-*.tgz
+		@rm index.yaml
+
 # a help target including self-documenting targets (see the awk statement)
 define HELP_TEXT
 Usage: make [TARGET]... [MAKEVAR1=SOMETHING]...

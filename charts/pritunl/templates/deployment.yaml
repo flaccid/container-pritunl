@@ -73,7 +73,8 @@ spec:
             privileged: true
           volumeMounts:
             - name: conf
-              mountPath: /etc/pritunl
+              mountPath: /etc/pritunl.conf
+              subPath: pritunl.conf
             {{- if .Values.pritunl.logs.emptyDir }}
             - name: log
               mountPath: /var/log
