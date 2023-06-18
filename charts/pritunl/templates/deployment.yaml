@@ -28,9 +28,10 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
-        - name: alpine
+        - name: init-config
           image: alpine
-          command: ["sh", "-c", "cp /configmap/pritunl.conf /etc/pritunl"]
+          command: 
+            - ["sh", "-c", "cp -v /configmap/pritunl.conf /etc/pritunl/; ln -svf /etc/pritunl/pritunl.conf /etc/pritunl.conf"]
           volumeMounts:
             - name: conf
               mountPath: /etc/pritunl
