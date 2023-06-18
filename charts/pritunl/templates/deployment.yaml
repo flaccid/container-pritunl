@@ -34,8 +34,12 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-          - name: PRITUNL_MONGODB_URI
-            value: {{ .Values.pritunl.mongodbUri }}
+          {{- range $k, $v := .Values.pritunl.env }}
+          {{- if $v }}
+          - name: {{ $k }}
+            value: {{ $v }}
+          {{- end }}
+          {{- end }}
           ports:
             - name: http
               containerPort: 80
@@ -58,6 +62,9 @@ spec:
           securityContext:
             privileged: true
           volumeMounts:
+            - name: conf
+              mountPath: /etc/pritunl.conf
+              subPath: pritunl.conf
             {{- if .Values.pritunl.logs.emptyDir }}
             - name: log
               mountPath: /var/log
@@ -75,6 +82,9 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
+        - name: conf
+          configMap:
+            name: {{ include "pritunl.fullname" . }}
         {{- if .Values.pritunl.logs.emptyDir }}
         - name: log
           emptyDir: {}

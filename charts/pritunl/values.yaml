@@ -79,6 +79,16 @@ tolerations: []
 affinity: {}
 
 pritunl:
-  mongodbUri: ""
+  conf:
+    bind_addr: "0.0.0.0"
+    local_address_interface: auto
+    log_path: /var/log/pritunl.log
+    mongodb_uri: ""
+    port: 443
+    static_cache: true
+    temp_path: /tmp/pritunl_%r
+    www_path: /usr/share/pritunl/www
+  env:
+    PRITUNL_MONGODB_URI: ""
   logs:
     emptyDir: false
