@@ -3,12 +3,12 @@ entries:
   pritunl:
   - apiVersion: v2
     appVersion: 1.32.3504
-    created: "2023-06-18T17:22:46.436408102+10:00"
+    created: "2023-06-18T18:10:39.849964642+10:00"
     description: A Helm chart for Kubernetes
-    digest: 9a44277c645adc0ef2fa28a4434fd64016669ef71277198aeeda5751f741384e
+    digest: 7b32bf73304fa2763f42ffd7426cae495b4b20d8c68e639ae2f4690641b3289a
     name: pritunl
     type: application
     urls:
-    - https://flaccid.github.io/container-pritunl/pritunl-0.4.5.tgz
-    version: 0.4.5
-generated: "2023-06-18T17:22:46.427452477+10:00"
+    - https://flaccid.github.io/container-pritunl/pritunl-0.5.0.tgz
+    version: 0.5.0
+generated: "2023-06-18T18:10:39.843017282+10:00"

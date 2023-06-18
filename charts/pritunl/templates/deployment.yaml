@@ -30,11 +30,10 @@ spec:
       initContainers:
         - name: init-config
           image: alpine
-          command: ["sh", "-c", "cp -v /configmap/pritunl.conf /etc/pritunl.conf"]
+          command: ["sh", "-c", "cp -v /configmap/pritunl.conf /opt/pritunl/etc/"]
           volumeMounts:
             - name: conf
-              mountPath: /etc/pritunl.conf
-              subPath: pritunl.conf
+              mountPath: /opt/pritunl/etc
             - name: configmap
               mountPath: /configmap
       containers:
@@ -73,8 +72,7 @@ spec:
             privileged: true
           volumeMounts:
             - name: conf
-              mountPath: /etc/pritunl.conf
-              subPath: pritunl.conf
+              mountPath: /opt/pritunl/etc
             {{- if .Values.pritunl.logs.emptyDir }}
             - name: log
               mountPath: /var/log
